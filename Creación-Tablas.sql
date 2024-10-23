@@ -1,6 +1,6 @@
-CREATE DATABASE `Obligatorio` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+CREATE DATABASE `obligatoriobdd2024` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 
-USE Obligatorio;
+USE obligatoriobdd2024;
 
 CREATE TABLE login(
     correo VARCHAR(50) NOT NULL PRIMARY KEY,
