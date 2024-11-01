@@ -1,4 +1,4 @@
-CREATE DATABASE `Obligatorio`;
+CREATE SCHEMA obligatorio2024;
 
 USE obligatorio2024;
 
@@ -40,6 +40,14 @@ CREATE TABLE alumnos(
     fecha_nacimiento DATE
 );
 
+ALTER TABLE alumnos
+    ADD COLUMN telefono VARCHAR(20),
+    ADD COLUMN correo VARCHAR(50);
+
+ALTER TABLE alumnos
+    ADD CONSTRAINT fk_correo FOREIGN KEY (correo)
+    REFERENCES login (correo);
+
 CREATE TABLE clase(
     id INT AUTO_INCREMENT PRIMARY KEY,
     ci_instructor INT,
@@ -64,3 +72,13 @@ CREATE TABLE alumno_clase(
     FOREIGN KEY (id_turno) REFERENCES turnos(id),
     FOREIGN KEY (id_equipamiento) REFERENCES equipamiento(id)
 );
+
+CREATE TABLE rol(
+    administrador VARCHAR(50),
+    instructor VARCHAR(50),
+    alumno VARCHAR(50),
+    FOREIGN KEY (administrador) REFERENCES login(correo),
+    FOREIGN KEY (instructor) REFERENCES login(correo),
+    FOREIGN KEY (alumno) REFERENCES login(correo)
+);
+
