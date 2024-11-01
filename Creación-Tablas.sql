@@ -64,9 +64,3 @@ CREATE TABLE alumno_clase(
     FOREIGN KEY (id_turno) REFERENCES turnos(id),
     FOREIGN KEY (id_equipamiento) REFERENCES equipamiento(id)
 );
-
-
-INSERT INTO alumno_clase (id_clase, ci_alumno, id_equipamiento, id_turno)
-SELECT c.id, '13579246', '1', c.id_turno
-FROM clase c
-WHERE c.id = 6;
