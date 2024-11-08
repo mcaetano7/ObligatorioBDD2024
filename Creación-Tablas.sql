@@ -7,6 +7,13 @@ CREATE TABLE login(
     contraseña VARCHAR(20) NOT NULL
 );
 
+ALTER TABLE login
+ADD COLUMN id_rol INT;
+
+ALTER TABLE login
+    ADD CONSTRAINT fk_rol FOREIGN KEY (id_rol)
+    REFERENCES rol (id);
+
 CREATE TABLE actividades(
     id INT AUTO_INCREMENT PRIMARY KEY,
     descripcion VARCHAR(100),
@@ -74,11 +81,8 @@ CREATE TABLE alumno_clase(
 );
 
 CREATE TABLE rol(
-    administrador VARCHAR(50),
-    instructor VARCHAR(50),
-    alumno VARCHAR(50),
-    FOREIGN KEY (administrador) REFERENCES login(correo),
-    FOREIGN KEY (instructor) REFERENCES login(correo),
-    FOREIGN KEY (alumno) REFERENCES login(correo)
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(20) NOT NULL
 );
+
 

@@ -4,8 +4,8 @@ def conectarse():
     try:
         print('Conectando a MySQL...')
         cnx = pymysql.connect(
-            user='root',
-            password='rootpassword',
+            user='alumno',
+            password='alumnopass',
             host='127.0.0.1',
             database='obligatorio2024'
         )

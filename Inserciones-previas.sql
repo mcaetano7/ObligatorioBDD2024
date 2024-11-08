@@ -21,5 +21,13 @@ INSERT INTO equipamiento(id_actividad, descripcion, costo) VALUES
 (2, 'Esquíes', 750),
 (1, 'Balaclava', 300),
 (2, 'Balaclava', 300),
-(3, 'Balaclava', 300)
+(3, 'Balaclava', 300);
+
+INSERT INTO rol(descripcion) VALUES
+('administrador'),
+('instructor'),
+('alumno');
+
+INSERT INTO login(correo, contraseña, id_rol) VALUES
+('juanperezcerro@gmail.com', '1234', 1);
 
