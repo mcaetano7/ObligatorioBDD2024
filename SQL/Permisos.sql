@@ -1,7 +1,7 @@
-use obligatorio2024;
+USE obligatorio2024;
 
 # creación usuarios
-CREATE USER 'administrador'@'localhost'  IDENTIFIED BY 'adminpass';
+CREATE USER 'administrador'@'%'  IDENTIFIED BY 'adminpass';
 
 CREATE USER 'instructor'@'%' IDENTIFIED BY 'instructorpass';
 
@@ -33,7 +33,9 @@ GRANT SELECT ON equipamiento TO 'instructor'@'%';
 # permisos instructores
 GRANT ALL PRIVILEGES ON instructores TO 'administrador'@'%';
 
-GRANT SELECT ON instructores TO 'alumno'@'%';
+CREATE VIEW vista_instructores_nomape AS SELECT nombre, apellido FROM instructores;
+
+GRANT SELECT ON vista_instructores_nomape TO 'alumno'@'%';
 
 GRANT SELECT ON instructores TO 'instructor'@'%';
 
@@ -47,7 +49,7 @@ GRANT SELECT ON turnos TO 'instructor'@'%';
 # permisos alumnos
 GRANT ALL PRIVILEGES ON alumnos TO 'administrador'@'%';
 
-GRANT SELECT ON alumnos TO 'alumno'@'%';
+GRANT SELECT, UPDATE ON alumnos TO 'alumno'@'%';
 
 GRANT SELECT ON alumnos TO 'instructor'@'%';
 
@@ -56,7 +58,7 @@ CREATE VIEW vista_clase_admin AS SELECT ci_instructor, id_actividad, id_turno FR
 
 GRANT UPDATE ON vista_clase_admin TO 'administrador'@'%';
 
-GRANT SELECT, DELETE, INSERT ON clase TO 'administrador'@'%';
+GRANT INSERT, SELECT ON clase TO 'administrador'@'%';
 
 GRANT SELECT ON clase TO 'alumno'@'%';
 
@@ -65,7 +67,7 @@ GRANT SELECT ON clase TO 'instructor'@'%';
 # permisos alumno_clase
 GRANT ALL PRIVILEGES ON alumno_clase TO 'administrador'@'%';
 
-GRANT SELECT ON alumno_clase TO 'alumno'@'%';
+GRANT SELECT, INSERT ON alumno_clase TO 'alumno'@'%';
 
 GRANT SELECT ON alumno_clase TO 'instructor'@'%';
 

@@ -1,4 +1,4 @@
 from funciones import *
 
-insert_login("12345","1234")
+insert_login("admin1@correo","1234", 1)
 

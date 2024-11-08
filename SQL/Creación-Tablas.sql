@@ -70,13 +70,10 @@ CREATE TABLE clase(
 CREATE TABLE alumno_clase(
     id_clase INT,
     ci_alumno INT,
-    id_turno INT,
     id_equipamiento INT,
-    UNIQUE(ci_alumno, id_turno),
     PRIMARY KEY (id_clase, ci_alumno),
     FOREIGN KEY (id_clase) REFERENCES clase(id),
     FOREIGN KEY (ci_alumno) REFERENCES alumnos(ci),
-    FOREIGN KEY (id_turno) REFERENCES turnos(id),
     FOREIGN KEY (id_equipamiento) REFERENCES equipamiento(id)
 );
 
