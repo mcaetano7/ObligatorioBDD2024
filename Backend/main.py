@@ -1,2 +1,4 @@
-insert_login("admin1@correo","1234", 1)
+from funciones import encontrar_rol
+
+print(encontrar_rol('mateo'))
 

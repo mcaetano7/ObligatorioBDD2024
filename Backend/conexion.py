@@ -1,28 +1,28 @@
 import pymysql
 
-def conectarse(user):
+def conectarse(usuario):
     try:
         print('Conectando a MySQL...')
-        if user == 'administrador':
+        if usuario == 'administrador':
             cnx = pymysql.connect(
-                user=user,
+                user=usuario,
                 password='adminpass',
                 host='127.0.0.1',
                 database='obligatorio2024'
             )
-        elif user == 'instructor':
+        elif usuario == 'instructor':
             cnx = pymysql.connect(
-                user=user,
+                user=usuario,
                 password='instructorpass',
                 host='127.0.0.1',
                 database='obligatorio2024'
             )
-        elif user == 'alumno':
+        elif usuario == 'alumno':
             cnx = pymysql.connect(
-                user=user,
-                password='alumnopass',
-                host='127.0.0.1',
-                database='obligatorio2024'
+                user = usuario,
+                password = 'alumnopass',
+                host = '127.0.0.1',
+                database = 'obligatorio2024'
             )
         print('Conexión establecida')
         cursor = cnx.cursor()

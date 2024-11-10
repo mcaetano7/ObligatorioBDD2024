@@ -1,4 +1,4 @@
-from Backend.conexion import conectarse
+from conexion import conectarse
 
 #ABM Turnos
 def insert_turno(id, hora_inicio, hora_fin):
