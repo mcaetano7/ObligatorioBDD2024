@@ -1,7 +1,7 @@
 from conexion import conectarse
 
 
-
+#Login
 def insert_login(usuario, password):
     cnx, cursor = conectarse()
     if cnx is not None and cursor is not None:
@@ -44,7 +44,7 @@ def baja_instructor(ci):
     if cnx is not None and cursor is not None:
         try:
             print('Ejecutando la consulta...')
-            cursor.execute("DELETE FROM instructor WHERE ci = %s", (ci,))
+            cursor.execute("DELETE FROM instructores WHERE ci = %s", (ci,))
             print('Consulta ejecutada.')
             cnx.commit()
         except Exception as e:
@@ -58,7 +58,7 @@ def modificacion_instructor(ci, nombre, apellido):
     if cnx is not None and cursor is not None:
         try:
             print('Ejecutando la consulta...')
-            cursor.execute("UPDATE instructor SET nombre = %s, apellido = %s WHERE ci = %s", (nombre, apellido, ci))
+            cursor.execute("UPDATE instructores SET nombre = %s, apellido = %s WHERE ci = %s", (nombre, apellido, ci))
             print('Consulta ejecutada.')
             cnx.commit()
         except Exception as e:
@@ -68,11 +68,11 @@ def modificacion_instructor(ci, nombre, apellido):
             cnx.close()
 
 #ABM Turnos
-def insert_turno(id, hora_inicio, hora_fin):
+def insert_turno(hora_inicio, hora_fin):
     cnx, cursor = conectarse()
     if cnx is not None and cursor is not None:
         try:
-            cursor.execute("INSERT INTO turno (id, hora_inicio, hora_fin) VALUES (%s, %s, %s)", (id, hora_inicio, hora_fin))
+            cursor.execute("INSERT INTO turnos (hora_inicio, hora_fin) VALUES (%s, %s, %s)", (id, hora_inicio, hora_fin))
             cnx.commit()
             print(f"Turno de {hora_inicio} a {hora_fin} creado con éxito.")
         except Exception as e:
@@ -85,7 +85,7 @@ def baja_turno(id):
     cnx, cursor = conectarse()
     if cnx is not None and cursor is not None:
         try:
-            cursor.execute("DELETE FROM turno WHERE id = %s", (id,))
+            cursor.execute("DELETE FROM turnos WHERE id = %s", (id,))
             cnx.commit()
             print(f"Turno {id} eliminado con éxito.")
         except Exception as e:
@@ -98,7 +98,7 @@ def modificacion_turno(id, nueva_hora_inicio, nueva_hora_fin):
     cnx, cursor = conectarse()
     if cnx is not None and cursor is not None:
         try:
-            cursor.execute("UPDATE turno SET hora_inicio = %s, hora_fin = %s WHERE id = %s", 
+            cursor.execute("UPDATE turnos SET hora_inicio = %s, hora_fin = %s WHERE id = %s", 
                            (nueva_hora_inicio, nueva_hora_fin, id))
             cnx.commit()
             print(f"Turno {id} modificado con éxito.")
@@ -128,7 +128,7 @@ def insert_alumno(ci, nombre, apellido, fecha_nacimiento):
     cnx, cursor = conectarse()
     if cnx is not None and cursor is not None:
         try:
-            cursor.execute("INSERT INTO alumno (ci, nombre, apellido, fecha_nacimiento) VALUES (%s, %s, %s, %s)", 
+            cursor.execute("INSERT INTO alumnos (ci, nombre, apellido, fecha_nacimiento) VALUES (%s, %s, %s, %s)", 
                            (ci, nombre, apellido, fecha_nacimiento)) 
             cnx.commit()
             print(f"Alumno {nombre} {apellido} agregado con éxito.")
@@ -142,7 +142,7 @@ def baja_alumno(ci):
     cnx, cursor = conectarse()
     if cnx is not None and cursor is not None:
         try:
-            cursor.execute("DELETE FROM alumno WHERE ci = %s", (ci,))
+            cursor.execute("DELETE FROM alumnos WHERE ci = %s", (ci,))
             cnx.commit()
             print(f"Alumno {ci} eliminado con éxito.")
         except Exception as e:
@@ -155,7 +155,7 @@ def modificacion_alumno(ci, nombre, apellido, fecha_nacimiento):
     cnx, cursor = conectarse()
     if cnx is not None and cursor is not None:
         try:
-            cursor.execute("UPDATE alumno SET nombre = %s, apellido = %s, fecha_nacimiento = %s WHERE ci = %s", 
+            cursor.execute("UPDATE alumnos SET nombre = %s, apellido = %s, fecha_nacimiento = %s WHERE ci = %s", 
                            (nombre, apellido, fecha_nacimiento, ci))
             cnx.commit()
             print(f"Alumno {ci} modificado con éxito.")
