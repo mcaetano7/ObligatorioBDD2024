@@ -6,7 +6,6 @@ from getpass4 import getpass
 import time
 
 
-
 def encontrar_rol(correo):
     cnx, cursor = conectarse('administrador')
     if cnx is not None and cursor is not None:
@@ -19,6 +18,7 @@ def encontrar_rol(correo):
         finally:
             cursor.close()
             cnx.close()
+
 
 def inicio_sesion():
     flag = True
@@ -52,7 +52,8 @@ def inicio_sesion():
                     alta_alumno(correo)
                     print("Te has registrado con exito.")
                 elif rol == 'instructor':
-                    print("Te enviaremos un mail para corroborar que efectivamente eres un instructor.\nUna vez valides tu identidad te pediremos tus datos para ingresarte en el sistema.")
+                    print("Te enviaremos un mail para corroborar que efectivamente eres un instructor."
+                          "\nUna vez valides tu identidad te pediremos tus datos para ingresarte en el sistema.")
                     time.sleep(5)
                     insert_login(correo, contraseña, 2)
                     alta_instructor(correo)

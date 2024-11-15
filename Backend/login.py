@@ -1,12 +1,14 @@
 from conexion import conectarse
 from hash import *
 
+
 def insert_login(correo, contraseña, id_rol):
     cnx, cursor = conectarse('administrador')
     if cnx is not None and cursor is not None:
         try:
             hashed_password = hash_password(contraseña)
-            cursor.execute("INSERT INTO login (correo, contraseña, id_rol) VALUES (%s, %s, %s)", (correo, hashed_password, id_rol))
+            cursor.execute("INSERT INTO login (correo, contraseña, id_rol) VALUES (%s, %s, %s)",
+                           (correo, hashed_password, id_rol))
             resultados = cursor.fetchall()
             for el in resultados:
                 print(el)
@@ -21,8 +23,9 @@ def insert_login(correo, contraseña, id_rol):
             else:
                 print('No se pudo establecer la conexión.')
 
+
 def baja_login(correo):
-    cnx, cursor = conectarse()
+    cnx, cursor = conectarse('administrador')
     if cnx is not None and cursor is not None:
         try:
             cursor.execute("DELETE FROM login WHERE correo = %s", correo)
@@ -32,6 +35,7 @@ def baja_login(correo):
         finally:
             cursor.close()
             cnx.close()
+
 
 def validar_credenciales(correo, contraseña) -> bool:
     cnx, cursor = conectarse('administrador')
@@ -55,6 +59,7 @@ def validar_credenciales(correo, contraseña) -> bool:
     else:
         print("No se pudo conectar a la base de datos.")
         return False
+
 
 def usuario_existente(correo) -> bool:
     cnx, cursor = conectarse('administrador')

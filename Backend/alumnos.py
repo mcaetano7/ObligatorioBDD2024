@@ -1,5 +1,6 @@
 from conexion import conectarse
 
+
 def alta_alumno(correo):
     cnx, cursor = conectarse('alumno')
     cursor.execute("SELECT correo FROM ")
@@ -10,12 +11,14 @@ def alta_alumno(correo):
                   input("Ingrese su telefono: "),
                   correo)
 
+
 def insert_alumno(ci, nombre, apellido, fecha_nacimiento, telefono, correo):
     cnx, cursor = conectarse('administrador')
     if cnx is not None and cursor is not None:
         try:
-            cursor.execute("INSERT INTO alumno (ci, nombre, apellido, fecha_nacimiento, telefono, correo) VALUES (%s, %s, %s, %s, %s, %S)",
-                           (ci, nombre, apellido, fecha_nacimiento))
+            cursor.execute("INSERT INTO alumno (ci, nombre, apellido,"
+                           " fecha_nacimiento, telefono, correo) VALUES (%s, %s, %s, %s, %s, %S)",
+                           (ci, nombre, apellido, fecha_nacimiento, telefono, correo))
             cnx.commit()
             print(f"Alumno {nombre} {apellido} agregado con éxito.")
         except Exception as e:
@@ -23,6 +26,7 @@ def insert_alumno(ci, nombre, apellido, fecha_nacimiento, telefono, correo):
         finally:
             cursor.close()
             cnx.close()
+
 
 def baja_alumno(ci):
     cnx, cursor = conectarse('administrador')
@@ -36,6 +40,7 @@ def baja_alumno(ci):
         finally:
             cursor.close()
             cnx.close()
+
 
 def modificacion_alumno(ci, nombre, apellido, fecha_nacimiento):
     cnx, cursor = conectarse('alumno')
