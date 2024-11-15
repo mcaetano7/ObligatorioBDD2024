@@ -31,8 +31,10 @@ def inicio_sesion():
         opcion = input("Elige una opción: ")
         if opcion == '1':
             correo = input("Correo: ")
-            contraseña = getpass("Contraseña: ", '*')
-            #contraseña = input("Contraseña: ")
+            contraseña = input("Contraseña: ")
+            while len(contraseña) < 4:
+                print("La contraseña debe contener al menos 4 caracteres.")
+                contraseña = input("Contraseña: ")
             if validar_credenciales(correo, contraseña):
                 print("Sesión iniciada con exito")
                 flag = False
@@ -44,13 +46,18 @@ def inicio_sesion():
                 print("Ya existe un usuario con ese correo, pruebe iniciar sesión.")
                 correo = None
             if correo is not None:
-                contraseña = ""
-                confirmpass = " "
-                while contraseña != confirmpass:
+                contraseña = input("Contraseña: ")
+                while len(contraseña) < 4:
+                    print("La contraseña debe contener al menos 4 caracteres.")
                     contraseña = input("Contraseña: ")
+                confirmpass = input("Vuelva a ingresar la contraseña: ")
+                while contraseña != confirmpass:
+                    print("Las contraseñas no coinciden")
+                    contraseña = input("Contraseña: ")
+                    while len(contraseña) < 4:
+                        print("La contraseña debe contener al menos 4 caracteres.")
+                        contraseña = input("Contraseña: ")
                     confirmpass = input("Vuelva a ingresar la contraseña: ")
-                    #contraseña = getpass(prompt="Contraseña: ", mask="*")
-                    #confirmpass = getpass("Vuelva a ingresar la contraseña: ", '*')
                 rol = ""
                 while rol != 'alumno' and rol != 'instructor':
                     rol = input("Eres alumno o instructor:")

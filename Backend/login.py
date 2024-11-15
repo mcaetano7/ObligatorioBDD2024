@@ -9,6 +9,7 @@ def insert_login(correo, contraseña, id_rol):
             hashed_password = hash_password(contraseña)
             cursor.execute("INSERT INTO login (correo, contraseña, id_rol) VALUES (%s, %s, %s)",
                            (correo, hashed_password, id_rol))
+            cnx.commit()
             resultados = cursor.fetchall()
             for el in resultados:
                 print(el)
