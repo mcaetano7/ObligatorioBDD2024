@@ -59,7 +59,8 @@ def inicio_sesion():
                     alta_alumno(correo)
                     print("Te has registrado con exito.")
                 elif rol == 'instructor':
-                    print("Te enviaremos un mail para corroborar que efectivamente eres un instructor.\nUna vez valides tu identidad te pediremos tus datos para ingresarte en el sistema.")
+                    print("Te enviaremos un mail para corroborar que efectivamente eres un instructor."
+                          "\nUna vez valides tu identidad te pediremos tus datos para ingresarte en el sistema.")
                     time.sleep(5)
                     insert_login(correo, contraseña, 2)
                     alta_instructor(correo)
