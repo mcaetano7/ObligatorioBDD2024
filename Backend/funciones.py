@@ -30,8 +30,8 @@ def inicio_sesion():
         opcion = input("Elige una opción: ")
         if opcion == '1':
             correo = input("Correo: ")
-            contraseña = getpass("Contraseña: ")
-            #contraseña = input("Contraseña: ")
+            #contraseña = getpass("Contraseña: ")
+            contraseña = input("Contraseña: ")
             if validar_credenciales(correo, contraseña):
                 print("Sesión iniciada con exito")
                 flag = False
