@@ -1,4 +1,5 @@
-from funciones import encontrar_rol
+from funciones import *
 
-print(encontrar_rol('mateo'))
-
+inicio_sesion()
+# menu con opciones segun que tipo de usuario es
+#

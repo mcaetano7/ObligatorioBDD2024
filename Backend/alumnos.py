@@ -1,11 +1,20 @@
 from conexion import conectarse
 
-#ABM Alumnos
-def insert_alumno(ci, nombre, apellido, fecha_nacimiento):
-    cnx, cursor = conectarse()
+def alta_alumno(correo):
+    cnx, cursor = conectarse('alumno')
+    cursor.execute("SELECT correo FROM ")
+    insert_alumno(input("Ingrese su cédula: "),
+                  input("Ingrese su nombre: "),
+                  input("Ingrese su apellido: "),
+                  input("Ingrese su fecha de nacimiento: "),
+                  input("Ingrese su telefono: "),
+                  correo)
+
+def insert_alumno(ci, nombre, apellido, fecha_nacimiento, telefono, correo):
+    cnx, cursor = conectarse('administrador')
     if cnx is not None and cursor is not None:
         try:
-            cursor.execute("INSERT INTO alumno (ci, nombre, apellido, fecha_nacimiento) VALUES (%s, %s, %s, %s)",
+            cursor.execute("INSERT INTO alumno (ci, nombre, apellido, fecha_nacimiento, telefono, correo) VALUES (%s, %s, %s, %s, %s, %S)",
                            (ci, nombre, apellido, fecha_nacimiento))
             cnx.commit()
             print(f"Alumno {nombre} {apellido} agregado con éxito.")
@@ -16,7 +25,7 @@ def insert_alumno(ci, nombre, apellido, fecha_nacimiento):
             cnx.close()
 
 def baja_alumno(ci):
-    cnx, cursor = conectarse()
+    cnx, cursor = conectarse('administrador')
     if cnx is not None and cursor is not None:
         try:
             cursor.execute("DELETE FROM alumno WHERE ci = %s", (ci,))
@@ -29,7 +38,7 @@ def baja_alumno(ci):
             cnx.close()
 
 def modificacion_alumno(ci, nombre, apellido, fecha_nacimiento):
-    cnx, cursor = conectarse()
+    cnx, cursor = conectarse('alumno')
     if cnx is not None and cursor is not None:
         try:
             cursor.execute("UPDATE alumno SET nombre = %s, apellido = %s, fecha_nacimiento = %s WHERE ci = %s",
