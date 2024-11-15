@@ -4,15 +4,11 @@ USE obligatorio2024;
 
 CREATE TABLE login(
     correo VARCHAR(50) NOT NULL PRIMARY KEY,
-    contraseña VARCHAR(20) NOT NULL
+    contraseña VARCHAR(100) NOT NULL
 );
 
 ALTER TABLE login
-ADD COLUMN id_rol INT;
-
-ALTER TABLE login
-    ADD CONSTRAINT fk_rol FOREIGN KEY (id_rol)
-    REFERENCES rol (id);
+    ADD COLUMN id_rol INT;
 
 CREATE TABLE actividades(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -31,7 +27,9 @@ CREATE TABLE equipamiento(
 CREATE TABLE instructores(
     ci INT NOT NULL PRIMARY KEY,
     nombre VARCHAR(20),
-    apellido VARCHAR(20)
+    apellido VARCHAR(20),
+    correo VARCHAR(50),
+    FOREIGN KEY (correo) REFERENCES login(correo)
 );
 
 CREATE TABLE turnos(
@@ -44,16 +42,11 @@ CREATE TABLE alumnos(
     ci INT NOT NULL PRIMARY KEY,
     nombre VARCHAR(20),
     apellido VARCHAR(20),
-    fecha_nacimiento DATE
+    fecha_nacimiento DATE,
+    telefono VARCHAR(20),
+    correo VARCHAR(50),
+    FOREIGN KEY (correo) REFERENCES login(correo)
 );
-
-ALTER TABLE alumnos
-    ADD COLUMN telefono VARCHAR(20),
-    ADD COLUMN correo VARCHAR(50);
-
-ALTER TABLE alumnos
-    ADD CONSTRAINT fk_correo FOREIGN KEY (correo)
-    REFERENCES login (correo);
 
 CREATE TABLE clase(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -81,5 +74,9 @@ CREATE TABLE rol(
     id INT AUTO_INCREMENT PRIMARY KEY,
     descripcion VARCHAR(20) NOT NULL
 );
+
+ALTER TABLE login
+ADD CONSTRAINT fk_rol FOREIGN KEY (id_rol)
+    REFERENCES rol (id);
 
 
