@@ -12,7 +12,7 @@ def encontrar_rol(correo):
         try:
             cursor.execute("SELECT descripcion FROM rol JOIN login ON id_rol = id "
                            "WHERE correo = %s", correo)
-            return cursor.fetchone()
+            return cursor.fetchone()[0]
         except Exception as e:
             print(f"Error durante la consulta: {e}")
         finally:
@@ -21,6 +21,7 @@ def encontrar_rol(correo):
 
 
 def inicio_sesion():
+    global correo
     flag = True
     while flag:
         print("\n--- Menú de Inicio de Sesión ---")
@@ -30,8 +31,10 @@ def inicio_sesion():
         opcion = input("Elige una opción: ")
         if opcion == '1':
             correo = input("Correo: ")
-            #contraseña = getpass("Contraseña: ")
             contraseña = input("Contraseña: ")
+            while len(contraseña) < 4:
+                print("La contraseña debe contener al menos 4 caracteres.")
+                contraseña = input("Contraseña: ")
             if validar_credenciales(correo, contraseña):
                 print("Sesión iniciada con exito")
                 flag = False
@@ -44,6 +47,17 @@ def inicio_sesion():
                 correo = None
             if correo is not None:
                 contraseña = input("Contraseña: ")
+                while len(contraseña) < 4:
+                    print("La contraseña debe contener al menos 4 caracteres.")
+                    contraseña = input("Contraseña: ")
+                confirmpass = input("Vuelva a ingresar la contraseña: ")
+                while contraseña != confirmpass:
+                    print("Las contraseñas no coinciden")
+                    contraseña = input("Contraseña: ")
+                    while len(contraseña) < 4:
+                        print("La contraseña debe contener al menos 4 caracteres.")
+                        contraseña = input("Contraseña: ")
+                    confirmpass = input("Vuelva a ingresar la contraseña: ")
                 rol = ""
                 while rol != 'alumno' and rol != 'instructor':
                     rol = input("Eres alumno o instructor:")
@@ -61,6 +75,10 @@ def inicio_sesion():
 
         elif opcion == '3':
             print("Saliendo del sistema. ¡Hasta luego!")
-            #break
+            break
         else:
             print("Opción no válida. Por favor, elige de nuevo.")
+
+def menu_alumno():
+    print("holi")
+    #print("Elige una opción:\n")
