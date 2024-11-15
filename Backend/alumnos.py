@@ -1,13 +1,12 @@
 from conexion import conectarse
+from datetime import datetime
 
 
 def alta_alumno(correo):
-    cnx, cursor = conectarse('alumno')
-    cursor.execute("SELECT correo FROM ")
     insert_alumno(input("Ingrese su cédula: "),
                   input("Ingrese su nombre: "),
                   input("Ingrese su apellido: "),
-                  input("Ingrese su fecha de nacimiento: "),
+                  input("Ingrese su fecha de nacimiento en formato YYYY-MM-DD: "),
                   input("Ingrese su telefono: "),
                   correo)
 
@@ -16,9 +15,10 @@ def insert_alumno(ci, nombre, apellido, fecha_nacimiento, telefono, correo):
     cnx, cursor = conectarse('administrador')
     if cnx is not None and cursor is not None:
         try:
+            fecha_obj = datetime.strptime(fecha_nacimiento, "%Y-%m-%d").date()
             cursor.execute("INSERT INTO alumno (ci, nombre, apellido,"
-                           " fecha_nacimiento, telefono, correo) VALUES (%s, %s, %s, %s, %s, %S)",
-                           (ci, nombre, apellido, fecha_nacimiento, telefono, correo))
+                           " fecha_nacimiento, telefono, correo) VALUES (%s, %s, %s, %s, %s, %s)",
+                           (ci, nombre, apellido, fecha_obj, telefono, correo))
             cnx.commit()
             print(f"Alumno {nombre} {apellido} agregado con éxito.")
         except Exception as e:
