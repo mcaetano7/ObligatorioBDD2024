@@ -12,7 +12,6 @@ def insert_login(correo, contraseña, id_rol):
             resultados = cursor.fetchall()
             for el in resultados:
                 print(el)
-            cnx.commit()
         except Exception as e:
             print(f"Error durante la consulta: {e}")
         finally:
