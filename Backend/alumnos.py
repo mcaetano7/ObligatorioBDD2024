@@ -1,8 +1,6 @@
 from conexion import conectarse
 
 def alta_alumno(correo):
-    cnx, cursor = conectarse('alumno')
-    cursor.execute("SELECT correo FROM ")
     insert_alumno(input("Ingrese su cédula: "),
                   input("Ingrese su nombre: "),
                   input("Ingrese su apellido: "),
@@ -15,7 +13,7 @@ def insert_alumno(ci, nombre, apellido, fecha_nacimiento, telefono, correo):
     if cnx is not None and cursor is not None:
         try:
             cursor.execute("INSERT INTO alumno (ci, nombre, apellido, fecha_nacimiento, telefono, correo) VALUES (%s, %s, %s, %s, %s, %S)",
-                           (ci, nombre, apellido, fecha_nacimiento))
+                           (ci, nombre, apellido, fecha_nacimiento, telefono, correo))
             cnx.commit()
             print(f"Alumno {nombre} {apellido} agregado con éxito.")
         except Exception as e:

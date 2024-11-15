@@ -32,7 +32,7 @@ CREATE TABLE instructores(
     ci INT NOT NULL PRIMARY KEY,
     nombre VARCHAR(20),
     apellido VARCHAR(20),
-    correo VARCHAR(50)
+    correo VARCHAR(50),
     FOREIGN KEY (correo) REFERENCES login(correo)
 );
 
