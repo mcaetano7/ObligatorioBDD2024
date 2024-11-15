@@ -6,7 +6,6 @@ from getpass4 import getpass
 import time
 
 
-
 def encontrar_rol(correo):
     cnx, cursor = conectarse('administrador')
     if cnx is not None and cursor is not None:
@@ -19,6 +18,7 @@ def encontrar_rol(correo):
         finally:
             cursor.close()
             cnx.close()
+
 
 def inicio_sesion():
     global correo

@@ -8,11 +8,7 @@ CREATE TABLE login(
 );
 
 ALTER TABLE login
-ADD COLUMN id_rol INT;
-
-ALTER TABLE login
-    ADD CONSTRAINT fk_rol FOREIGN KEY (id_rol)
-    REFERENCES rol (id);
+    ADD COLUMN id_rol INT;
 
 CREATE TABLE actividades(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -78,5 +74,9 @@ CREATE TABLE rol(
     id INT AUTO_INCREMENT PRIMARY KEY,
     descripcion VARCHAR(20) NOT NULL
 );
+
+ALTER TABLE login
+ADD CONSTRAINT fk_rol FOREIGN KEY (id_rol)
+    REFERENCES rol (id);
 
 

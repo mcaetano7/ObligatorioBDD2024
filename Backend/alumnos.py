@@ -22,6 +22,7 @@ def insert_alumno(ci, nombre, apellido, fecha_nacimiento, telefono, correo):
             cursor.close()
             cnx.close()
 
+
 def baja_alumno(ci):
     cnx, cursor = conectarse('administrador')
     if cnx is not None and cursor is not None:
@@ -34,6 +35,7 @@ def baja_alumno(ci):
         finally:
             cursor.close()
             cnx.close()
+
 
 def modificacion_alumno(ci, nombre, apellido, fecha_nacimiento):
     cnx, cursor = conectarse('alumno')
