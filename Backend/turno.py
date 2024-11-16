@@ -1,14 +1,34 @@
 from conexion import conectarse
 
-#ABM Turnos
+def agregar_turno():
+    print("Ingreso de nuevo turno")
+    hora_inicio = input("Ingrese el horario de inicio en formato HH:MM: ")
+    hora_fin = input("Ingrese el horario de fin en formato HH:MM: ")
 
+    insert_turno(hora_inicio, hora_fin)
+    print(f"Turno de {hora_inicio} a {hora_fin} agregado correctamente")
 
-def insert_turno(id, hora_inicio, hora_fin):
+def eliminar_turno():
+    print("Eliminación de turno")
+    id_turno = input("Ingrese el id del turno a eliminar: ")
+
+    delete_turno(id_turno)
+    print(f"Turno {id_turno} eliminado correctamente")
+
+def modificar_turno():
+    print("Modificación de turno")
+    id_turno = input("Ingrese el id del turno a modificar: ")
+    hora_inicio = input("Ingrese el horario de inicio en formato HH:MM: ")
+    hora_fin = input("Ingrese el horario de fin en formato HH:MM: ")
+    update_turno(id_turno, hora_inicio, hora_fin)
+    print(f"Turno {id_turno} modificado correctamente")
+
+def insert_turno(hora_inicio, hora_fin):
     cnx, cursor = conectarse('administrador')
     if cnx is not None and cursor is not None:
         try:
-            cursor.execute("INSERT INTO turno (id, hora_inicio, hora_fin) "
-                           "VALUES (%s, %s, %s)", (id, hora_inicio, hora_fin))
+            cursor.execute("INSERT INTO turno (hora_inicio, hora_fin) "
+                           "VALUES (%s, %s)", (hora_inicio, hora_fin))
             cnx.commit()
             print(f"Turno de {hora_inicio} a {hora_fin} creado con éxito.")
         except Exception as e:
@@ -18,7 +38,7 @@ def insert_turno(id, hora_inicio, hora_fin):
             cnx.close()
 
 
-def baja_turno(id):
+def delete_turno(id):
     cnx, cursor = conectarse('administrador')
     if cnx is not None and cursor is not None:
         try:
@@ -32,7 +52,7 @@ def baja_turno(id):
             cnx.close()
 
 
-def modificacion_turno(id, nueva_hora_inicio, nueva_hora_fin):
+def update_turno(id, nueva_hora_inicio, nueva_hora_fin):
     cnx, cursor = conectarse('administrador')
     if cnx is not None and cursor is not None:
         try:

@@ -33,9 +33,7 @@ GRANT SELECT ON equipamiento TO 'instructor'@'%';
 # permisos instructores
 GRANT ALL PRIVILEGES ON instructores TO 'administrador'@'%';
 
-CREATE VIEW vista_instructores_nomape AS SELECT nombre, apellido FROM instructores;
-
-GRANT SELECT ON vista_instructores_nomape TO 'alumno'@'%';
+GRANT SELECT ON instructores TO 'alumno'@'%';
 
 GRANT SELECT ON instructores TO 'instructor'@'%';
 
