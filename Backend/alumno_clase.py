@@ -59,6 +59,3 @@ def mostrar_alumno_clases(correo):
         print("\nEstas son tus próximas clases:")
         print(tabulate(results, headers=headers, tablefmt="grid"))
         input("Presione cualquier tecla para volver: ")
-
-def select_alumno_clase(correo):
-    pass

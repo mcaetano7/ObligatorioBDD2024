@@ -2,7 +2,7 @@ from conexion import conectarse
 from funciones import obtener_fecha_nacimiento
 
 def alta_alumno(correo):
-    cedula = input("Ingrese su cédula: ")
+    cedula = input("\nIngrese su cédula: ")
     while len(cedula) != 8:
         print("La cédula debe tener 8 números.")
         cedula = input("Ingrese su cédula: ")

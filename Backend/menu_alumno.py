@@ -25,7 +25,6 @@ def menu_alumno(correo):
             break
         elif opcion == "5":
             print("\nSesión cerrada.")
-            time.sleep(0.8)
             break
 
 def info_alumno(correo):

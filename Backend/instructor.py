@@ -2,7 +2,7 @@ from conexion import conectarse
 
 
 def alta_instructor(correo):
-    insert_instructor(input("Ingrese su cédula: "),
+    insert_instructor(input("\nIngrese su cédula: "),
                       input("Ingrese su nombre: "),
                       input("Ingrese su apellido: "),
                       correo)
