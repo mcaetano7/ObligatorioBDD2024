@@ -1,84 +1,20 @@
-from Backend.alumnos import alta_alumno
-from Backend.login import insert_login, validar_credenciales, usuario_existente
 from conexion import conectarse
-from instructor import alta_instructor
-from getpass4 import getpass
-import time
+from datetime import datetime
 
-
-def encontrar_rol(correo):
+def obtener_rol(correo):
     cnx, cursor = conectarse('administrador')
-    if cnx is not None and cursor is not None:
+    cursor.execute("SELECT descripcion FROM rol JOIN login ON id_rol = id "
+                   "WHERE correo = %s", correo)
+    result = cursor.fetchone()[0]
+    cursor.close()
+    cnx.close()
+    return result
+
+def obtener_fecha_nacimiento():
+    while True:
+        fecha_nac = input("Ingrese su fecha de nacimiento en formato YYYY-MM-DD: ")
         try:
-            cursor.execute("SELECT descripcion FROM rol JOIN login ON id_rol = id "
-                           "WHERE correo = %s", correo)
-            return cursor.fetchone()[0]
-        except Exception as e:
-            print(f"Error durante la consulta: {e}")
-        finally:
-            cursor.close()
-            cnx.close()
-
-
-def inicio_sesion():
-    global correo
-    flag = True
-    while flag:
-        print("\n--- Menú de Inicio de Sesión ---")
-        print("1. Iniciar sesión")
-        print("2. Registrarse")
-        print("3. Salir")
-        opcion = input("Elige una opción: ")
-        if opcion == '1':
-            correo = input("Correo: ")
-            contraseña = input("Contraseña: ")
-            while len(contraseña) < 4:
-                print("La contraseña debe contener al menos 4 caracteres.")
-                contraseña = input("Contraseña: ")
-            if validar_credenciales(correo, contraseña):
-                print("Sesión iniciada con exito")
-                flag = False
-            else:
-                print("El correo electrónico o la contraseña son incorrectos.")
-        elif opcion == '2':
-            correo = input("Correo: ")
-            if usuario_existente(correo):
-                print("Ya existe un usuario con ese correo, pruebe iniciar sesión.")
-                correo = None
-            if correo is not None:
-                contraseña = input("Contraseña: ")
-                while len(contraseña) < 4:
-                    print("La contraseña debe contener al menos 4 caracteres.")
-                    contraseña = input("Contraseña: ")
-                confirmpass = input("Vuelva a ingresar la contraseña: ")
-                while contraseña != confirmpass:
-                    print("Las contraseñas no coinciden")
-                    contraseña = input("Contraseña: ")
-                    while len(contraseña) < 4:
-                        print("La contraseña debe contener al menos 4 caracteres.")
-                        contraseña = input("Contraseña: ")
-                    confirmpass = input("Vuelva a ingresar la contraseña: ")
-                rol = ""
-                while rol != 'alumno' and rol != 'instructor':
-                    rol = input("Eres alumno o instructor:")
-                if rol == 'alumno':
-                    insert_login(correo, contraseña, 3)
-                    alta_alumno(correo)
-                    print("Te has registrado con exito.")
-                elif rol == 'instructor':
-                    print("Te enviaremos un mail para corroborar que efectivamente eres un instructor."
-                          "\nUna vez valides tu identidad te pediremos tus datos para ingresarte en el sistema.")
-                    time.sleep(5)
-                    insert_login(correo, contraseña, 2)
-                    alta_instructor(correo)
-                    print("Te has registrado con exito.")
-
-        elif opcion == '3':
-            print("Saliendo del sistema. ¡Hasta luego!")
-            break
-        else:
-            print("Opción no válida. Por favor, elige de nuevo.")
-
-def menu_alumno():
-    print("holi")
-    #print("Elige una opción:\n")
+            fecha_valida = datetime.strptime(fecha_nac, "%Y-%m-%d")
+            return fecha_valida
+        except ValueError:
+            print("Formato inválido. Por favor, ingrese la fecha en el formato YYYY-MM-DD.")

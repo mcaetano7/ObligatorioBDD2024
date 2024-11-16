@@ -17,11 +17,11 @@ INSERT INTO equipamiento(id_actividad, descripcion, costo) VALUES
 (1, 'Casco', 650),
 (2, 'Casco', 650),
 (3, 'Casco', 650),
-(1, 'Tablas de snowboard', 800),
+(1, 'Tabla de snowboard', 800),
 (2, 'Esquíes', 750),
-(1, 'Balaclava', 300),
-(2, 'Balaclava', 300),
-(3, 'Balaclava', 300);
+(1, 'Botas de nieve', 300),
+(2, 'Botas de nieve', 300),
+(3, 'Botas de nieve', 300);
 
 INSERT INTO rol(descripcion) VALUES
 ('administrador'),

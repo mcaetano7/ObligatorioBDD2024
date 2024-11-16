@@ -1,17 +1,18 @@
 from conexion import conectarse
 
+def modificar_actividades():
+    print("\nmostrar actividades:")
+    id_actividad = input("Ingrese el id de la actividad a modificar: ")
+    nuevo_costo = input("Ingrese el nuevo costo: ")
 
-#Modificacion actividades
-def modificacion_actividades(id, descripacion, costo):
-    cnx, cursor = conectarse()
-    if cnx is not None and cursor is not None:
-        try:
-            cursor.execute("UPDATE actividades SET descripcion = %s, costo = %s WHERE id = %s",
-                           (descripacion, costo, id))
-            cnx.commit()
-            print(f"Actividad {id} modificada con éxito.")
-        except Exception as e:
-            print(f"Error durante la consulta: {e}")
-        finally:
-            cursor.close()
-            cnx.close()
+    update_actividades(id_actividad, nuevo_costo)
+    print(f"\nActividad {id_actividad} modificada correctamente")
+
+def update_actividades(id, costo):
+    cnx, cursor = conectarse('administrador')
+    cursor.execute("UPDATE actividades SET costo = %s WHERE id = %s",
+                   (costo, id))
+    cnx.commit()
+    print(f"Actividad {id} modificada con éxito.")
+    cursor.close()
+    cnx.close()

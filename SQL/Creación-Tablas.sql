@@ -31,6 +31,8 @@ CREATE TABLE instructores(
     correo VARCHAR(50),
     FOREIGN KEY (correo) REFERENCES login(correo)
 );
+ALTER TABLE instructores
+ADD CONSTRAINT unique_correoI UNIQUE (correo);
 
 CREATE TABLE turnos(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -47,6 +49,10 @@ CREATE TABLE alumnos(
     correo VARCHAR(50),
     FOREIGN KEY (correo) REFERENCES login(correo)
 );
+
+
+ALTER TABLE alumnos
+ADD CONSTRAINT unique_correo UNIQUE (correo);
 
 CREATE TABLE clase(
     id INT AUTO_INCREMENT PRIMARY KEY,

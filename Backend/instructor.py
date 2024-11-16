@@ -10,39 +10,38 @@ def alta_instructor(correo):
 
 def insert_instructor(ci, nombre, apellido, correo):
     cnx, cursor = conectarse('administrador')
-    if cnx is not None and cursor is not None:
-        try:
-            cursor.execute("INSERT INTO instructores (ci, nombre, apellido, correo) VALUES (%s, %s, %s, %s)",
-                           (ci, nombre, apellido, correo))
-            cnx.commit()
-        except Exception as e:
-            print(f"Error durante la consulta: {e}")
-        finally:
-            cursor.close()
-            cnx.close()
+    cursor.execute("INSERT INTO instructores (ci, nombre, apellido, correo) VALUES (%s, %s, %s, %s)",
+                   (ci, nombre, apellido, correo))
+    cnx.commit()
+    cursor.close()
+    cnx.close()
 
 
-def baja_instructor(ci):
+def delete_instructor(ci):
     cnx, cursor = conectarse('administrador')
-    if cnx is not None and cursor is not None:
-        try:
-            cursor.execute("DELETE FROM instructores WHERE ci = %s", ci)
-            cnx.commit()
-        except Exception as e:
-            print(f"Error durante la consulta: {e}")
-        finally:
-            cursor.close()
-            cnx.close()
+    cursor.execute("DELETE FROM instructores WHERE ci = %s", ci)
+    cnx.commit()
+    cursor.close()
+    cnx.close()
 
+def modificar_instructor(correo):
+    print("Modificación de instructor")
+    nuevo_nombre = input("Ingrese el nombre del instructor: ")
+    nuevo_apellido = input("Ingrese el apellido del instructor: ")
+    update_instructor(nuevo_nombre, nuevo_apellido, correo)
+    print(f"Datos del instructor {nuevo_nombre} modificados correctamente")
 
-def modificacion_instructor(ci, nombre, apellido):
+def update_instructor(nombre, apellido, correo):
     cnx, cursor = conectarse('instructor')
-    if cnx is not None and cursor is not None:
-        try:
-            cursor.execute("UPDATE instructores SET nombre = %s, apellido = %s WHERE ci = %s", (nombre, apellido, ci))
-            cnx.commit()
-        except Exception as e:
-            print(f"Error durante la consulta: {e}")
-        finally:
-            cursor.close()
-            cnx.close()
+    cursor.execute("UPDATE instructores SET nombre = %s, apellido = %s WHERE correo = %s", (nombre, apellido, correo))
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+
+def select_instructor(correo):
+    cnx, cursor = conectarse('instructor')
+    cursor.execute("SELECT * FROM instructores WHERE correo = %s", correo)
+    result = cursor.fetchone()
+    cursor.close()
+    cnx.close()
+    return result
