@@ -60,7 +60,6 @@ CREATE TABLE clase(
     id_actividad INT,
     id_turno INT,
     dictada BOOLEAN DEFAULT FALSE,
-    UNIQUE(ci_instructor, id_turno),
     FOREIGN KEY (ci_instructor) REFERENCES instructores(ci),
     FOREIGN KEY (id_actividad) REFERENCES actividades(id),
     FOREIGN KEY (id_turno) REFERENCES turnos(id)

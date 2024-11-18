@@ -7,7 +7,9 @@ from funciones import obtener_rol
 
 while True:
     correo = inicio_sesion()
-    if correo is not None:
+    if correo is None:
+        break
+    else:
         if obtener_rol(correo) == 'administrador':
             menu_admin()
         elif obtener_rol(correo) == 'instructor':
