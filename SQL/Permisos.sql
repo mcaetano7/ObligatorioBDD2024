@@ -35,7 +35,11 @@ GRANT ALL PRIVILEGES ON instructores TO 'administrador'@'%';
 
 GRANT SELECT ON instructores TO 'alumno'@'%';
 
-GRANT SELECT ON instructores TO 'instructor'@'%';
+CREATE VIEW vista_update_instructores AS SELECT nombre, apellido, correo FROM instructores
+
+GRANT UPDATE ON vista_update_instructores TO 'instructor'@'%';
+
+GRANT SELECT, INSERT, DELETE ON instructores TO 'instructor'@'%';
 
 # permisos turnos
 GRANT ALL PRIVILEGES ON turnos TO 'administrador'@'%';
@@ -47,7 +51,11 @@ GRANT SELECT ON turnos TO 'instructor'@'%';
 # permisos alumnos
 GRANT ALL PRIVILEGES ON alumnos TO 'administrador'@'%';
 
-GRANT SELECT, UPDATE ON alumnos TO 'alumno'@'%';
+CREATE VIEW vista_update_alumnos AS SELECT nombre, apellido, fecha_nacimiento, telefono FROM alumnos
+
+GRANT UPDATE ON vista_update_alumnos TO 'alumno'@'%';
+
+GRANT SELECT, INSERT, DELETE ON alumnos TO 'alumno'@'%';
 
 GRANT SELECT ON alumnos TO 'instructor'@'%';
 
@@ -56,16 +64,20 @@ CREATE VIEW vista_clase_admin AS SELECT ci_instructor, id_actividad, id_turno FR
 
 GRANT UPDATE ON vista_clase_admin TO 'administrador'@'%';
 
-GRANT INSERT, SELECT ON clase TO 'administrador'@'%';
+GRANT INSERT, SELECT, DELETE ON clase TO 'administrador'@'%';
 
 GRANT SELECT ON clase TO 'alumno'@'%';
+
+CREATE VIEW vista_clase_instructor AS SELECT id, dictada FROM clase
+
+GRANT SELECT, UPDATE ON vista_clase_instructor TO 'instructor'@'%';
 
 GRANT SELECT ON clase TO 'instructor'@'%';
 
 # permisos alumno_clase
 GRANT ALL PRIVILEGES ON alumno_clase TO 'administrador'@'%';
 
-GRANT SELECT, INSERT ON alumno_clase TO 'alumno'@'%';
+GRANT SELECT, INSERT, DELETE ON alumno_clase TO 'alumno'@'%';
 
 GRANT SELECT ON alumno_clase TO 'instructor'@'%';
 

@@ -1,17 +1,23 @@
 import time
-from Backend.alumno_clase import alta_alumno_clase, mostrar_alumno_clases
-from Backend.alumnos import select_alumno, modificar_alumno, baja_alumno
-from Backend.login import baja_login
+from alumno_clase import alta_alumno_clase, mostrar_alumno_clases
+from alumnos import baja_alumno, info_alumno
+from login import baja_login
+from tabulate import tabulate
+from funciones import mostrar_reportes
 
 def menu_alumno(correo):
     while True:
         time.sleep(0.8)
-        print("\n<< MENÚ ALUMNO >>")
-        print("1. Información personal")
-        print("2. Inscribirse")
-        print('3. Ver mis clases')
-        print('4. Desmatricularse')
-        print("5. Cerrar sesión")
+        menu_opciones = [
+            ["1", "Información personal"],
+            ["2", "Inscribirse"],
+            ["3", "Ver mis clases"],
+            ["4", "Ver reportes"],
+            ["5", "Eliminar usuario"],
+            ["6", "Cerrar sesión"]
+        ]
+        print("\n      MENÚ ALUMNO ")
+        print(tabulate(menu_opciones, headers=["Opción", "Descripción"], tablefmt="fancy_grid"))
         opcion = input("\nElige una opción: ")
         if opcion == "1":
             info_alumno(correo)
@@ -20,18 +26,18 @@ def menu_alumno(correo):
         elif opcion == "3":
             mostrar_alumno_clases(correo)
         elif opcion == "4":
-            baja_alumno(correo)
-            baja_login(correo)
-            break
+            mostrar_reportes()
         elif opcion == "5":
+            if input("\nPresione 1 para confirmar, otra tecla para volver: ") == '1':
+                baja_alumno(correo)
+                baja_login(correo)
+            break
+        elif opcion == '6':
             print("\nSesión cerrada.")
             break
+        else:
+            print("\nOpción inválida.")
 
-def info_alumno(correo):
-    ci, nombre, apellido, fecha_nacimiento, telefono, correo = select_alumno(correo)
-    print(f"\n<< TUS DATOS >> \nCédula: {ci}\nNombre: {nombre}\n"
-          f"Apellido: {apellido}\nFecha de nacimiento: {fecha_nacimiento}\n"
-          f"Telefono: {telefono}\nCorreo: {correo}")
-    if input("\nIngrese 1 si desea modificar sus datos, ingrese otro digito si no: ") == '1':
-        modificar_alumno(correo)
+
+
 

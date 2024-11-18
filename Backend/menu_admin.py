@@ -19,7 +19,7 @@ def menu_admin():
         elif opcion == "3":
             modificar_actividades()
         elif opcion == "4":
-            print("Saliendo del menu de administrador")
+            print("\nSaliendo del menu de administrador")
             break
         else:
             print("Opcion incorrecta")
@@ -27,7 +27,7 @@ def menu_admin():
 
 def menu_admin_turnos():
     while True:
-        print("Estas son tus opciones: ")
+        print("Estas son tus opciones: \n")
         print("1. Agregar un turno")
         print("2. Eliminar un turno")
         print("3. Modificar un turno")

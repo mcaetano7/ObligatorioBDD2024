@@ -1,3 +1,4 @@
+from Backend.funciones import obtener_rol
 from conexion import conectarse
 
 def modificar_actividades():
@@ -16,3 +17,9 @@ def update_actividades(id, costo):
     print(f"Actividad {id} modificada con éxito.")
     cursor.close()
     cnx.close()
+
+def obtener_actividades(correo):
+    cnx, cursor = conectarse(obtener_rol(correo))
+    cursor.execute("SELECT id, descripcion FROM actividades")
+    result = cursor.fetchall()
+    return result

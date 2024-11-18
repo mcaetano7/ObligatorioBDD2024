@@ -1,22 +1,26 @@
+from tabulate import tabulate
 from login import *
 import time
-from instructor import alta_instructor, select_instructor
-from alumnos import alta_alumno, select_alumno
+from instructor import obtener_instructor
+from alumnos import select_alumno
 
 
 def inicio_sesion():
     while True:
         time.sleep(0.8)
-        print("\n<< BIENVENIDO >>")
-        print("1. Iniciar sesión")
-        print("2. Registrarse")
-        print("3. Salir")
+        menu_opciones = [
+            ["1", "Iniciar sesión"],
+            ["2", "Registrarse"],
+            ["3", "Salir"]
+        ]
+        print("\n       BIENVENIDO ")
+        print(tabulate(menu_opciones, headers=["Opción", "Descripción"], tablefmt="fancy_grid"))
         opcion = input("\nElige una opción: ")
         if opcion == '1':
             correo = input("\nCorreo: ")
             contraseña = input("Contraseña: ")
             if validar_credenciales(correo, contraseña):
-                print("\nSesión iniciada con exito")
+                print("\nSesión iniciada con éxito")
                 return correo
             else:
                 print("El correo electrónico o la contraseña son incorrectos.")
@@ -40,41 +44,42 @@ def inicio_sesion():
                     confirmpass = input("Vuelva a ingresar la contraseña: ")
                 rol = 0
                 while rol < 1 or rol > 3:
-                    rol = int(input("\n1. Administrador\n2. Instructor\n3. Alumno\nTú que eres: "))
+                    roles = [(1, 'Administrador'), (2, 'Instructor'), (3, 'Alumno')]
+                    print("\n")
+                    print(tabulate(roles, headers=["Opción", "Descripción"], tablefmt="fancy_grid"))
+                    rol = int(input("Tú que eres: "))
                 if rol == 1:
-                    print("\nTe enviaremos un mail para corroborar que efectivamente eres un instructor."
-                          "\nUna vez valides tu identidad te pediremos tus datos para ingresarte en el sistema.\n")
+                    print("\nTe enviaremos un mail para corroborar que efectivamente eres un administrador.\n")
                     time.sleep(5)
                     insert_login(correo, contraseña, 1)
                     if usuario_existente(correo):
-                        print("Te has registrado con exito.")
-                        print("Inicie sesión por favor.")
+                        print("\nTe has registrado con exito.\n")
+                        print("\nInicie sesión por favor.")
                     else:
                         print("No has sido registrado coreectamente, vuelve a intentarlo.")
                         baja_login(correo)
                 elif rol == 2:
-                    print("Te enviaremos un mail para corroborar que efectivamente eres un instructor."                          "\nUna vez valides tu identidad te pediremos tus datos para ingresarte en el sistema.")
+                    print("\nTe enviaremos un mail para corroborar que efectivamente eres un instructor.\n"
+                          "Una vez valides tu identidad te pediremos tus datos para ingresarte en el sistema.\n")
                     time.sleep(4)
-                    insert_login(correo, contraseña, 2)
-                    alta_instructor(correo)
-                    if select_instructor(correo) is not None:
-                        print("Te has registrado con exito.")
-                        print("Inicie sesión por favor.")
+                    alta_usuario(correo, contraseña, 2)
+                    if obtener_instructor(correo) is not None:
+                        print("\nTe has registrado con exito.\n")
+                        print("\nInicie sesión por favor.")
                     else:
-                        print("No has sido registrado coreectamente, vuelve a intentarlo.")
+                        print("No has sido registrado correctamente, vuelve a intentarlo.")
                         baja_login(correo)
                 elif rol == 3:
-                    insert_login(correo, contraseña, 3)
-                    alta_alumno(correo)
+                    alta_usuario(correo, contraseña, 3)
                     if select_alumno(correo) is not None:
                         print("Inicie sesión por favor.")
                     else:
                         print("No has sido registrado coreectamente, vuelve a intentarlo.")
                         baja_login(correo)
         elif opcion == '3':
-            print("chau.")
-            break
+            print("\nchau.")
+            return None
         else:
-            print("Opción no válida. Por favor, elige de nuevo.")
+            print("\nOpción inválida. Por favor, elige de nuevo.")
 
 

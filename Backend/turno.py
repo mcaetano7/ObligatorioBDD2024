@@ -1,3 +1,4 @@
+from funciones import obtener_rol
 from conexion import conectarse
 
 def agregar_turno():
@@ -65,3 +66,9 @@ def update_turno(id, nueva_hora_inicio, nueva_hora_fin):
         finally:
             cursor.close()
             cnx.close()
+
+def obtener_turnos(correo):
+    cnx, cursor = conectarse(obtener_rol(correo))
+    cursor.execute("SELECT * FROM turnos")
+    result = cursor.fetchall()
+    return result
