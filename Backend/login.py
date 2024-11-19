@@ -17,7 +17,7 @@ def alta_usuario(correo, contraseña,id_rol):
     hashed_password = hash_password(contraseña)
     cursor.execute("INSERT INTO login (correo, contraseña, id_rol) VALUES (%s, %s, %s)",
                    (correo, hashed_password, id_rol))
-    if id_rol == 1:
+    if id_rol == 3:
         cedula = input("\nIngrese su cédula: ")
         while len(cedula) != 8:
             print("La cédula debe tener 8 números.")

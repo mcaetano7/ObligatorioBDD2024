@@ -1,5 +1,4 @@
-from Backend.equipamiento import obtener_equipamientos
-from inicio_sesion import *
+from inicio_sesion import inicio_sesion
 from menu_admin import menu_admin
 from menu_alumno import menu_alumno
 from menu_instructor import menu_instructor

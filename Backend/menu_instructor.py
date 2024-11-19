@@ -18,7 +18,7 @@ def menu_instructor(correo):
         ]
         print("\n       MENÚ INSTRUCTOR ")
         print(tabulate(menu_opciones, headers=["Opción", "Descripción"], tablefmt="fancy_grid"))
-        opcion = input("\nElige una opción: ")
+        opcion = input("\nIngrese una opción: ")
         if opcion == "1":
             info_instructor(correo)
         elif opcion == "2":

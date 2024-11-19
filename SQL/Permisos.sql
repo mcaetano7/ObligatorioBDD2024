@@ -55,7 +55,7 @@ CREATE VIEW vista_update_alumnos AS SELECT nombre, apellido, fecha_nacimiento, t
 
 GRANT UPDATE ON vista_update_alumnos TO 'alumno'@'%';
 
-GRANT SELECT, INSERT, DELETE ON alumnos TO 'alumno'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON alumnos TO 'alumno'@'%';
 
 GRANT SELECT ON alumnos TO 'instructor'@'%';
 
