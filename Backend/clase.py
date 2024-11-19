@@ -29,7 +29,7 @@ def alta_clase(correo):
         time.sleep(0.8)
         print("\nElección de clase:")
         actividades = obtener_actividades(correo)
-        print(tabulate(actividades, headers=["ID Clase", "Descripción"], tablefmt="fancy_grid"))
+        print(tabulate(actividades, headers=["ID Actividad", "Descripción"], tablefmt="fancy_grid"))
         id_actividad = input("Actividad que deseas enseñar (0 para volver): ")
         actividades_ids = [str(actividad[0]) for actividad in actividades]
         while id_actividad not in actividades_ids and id_actividad != "0":
@@ -130,3 +130,6 @@ def mostrar_clases_instructor(correo):
             cnx.commit()
         else:
             break
+
+def modificar_clase():
+    pass

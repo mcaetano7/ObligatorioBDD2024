@@ -1,5 +1,4 @@
 from tabulate import tabulate
-
 from conexion import conectarse
 
 def insert_instructor(ci, nombre, apellido, correo):

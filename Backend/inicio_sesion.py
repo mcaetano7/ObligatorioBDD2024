@@ -15,7 +15,7 @@ def inicio_sesion():
         ]
         print("\n       BIENVENIDO ")
         print(tabulate(menu_opciones, headers=["Opción", "Descripción"], tablefmt="fancy_grid"))
-        opcion = input("\nElige una opción: ")
+        opcion = input("\nIngrese una opción: ")
         if opcion == '1':
             correo = input("\nCorreo: ")
             contraseña = input("Contraseña: ")
@@ -25,16 +25,25 @@ def inicio_sesion():
             else:
                 print("El correo electrónico o la contraseña son incorrectos.")
         elif opcion == '2':
-            correo = input("\nCorreo: ")
+            correo = input("\nCorreo (0 para cancelar): ")
+            if correo == '0':
+                print("\n Cancelando operación.")
+                continue
             if usuario_existente(correo):
                 print("Ya existe un usuario con ese correo, pruebe iniciar sesión.")
                 correo = None
             if correo is not None:
-                contraseña = input("Contraseña: ")
+                contraseña = input("Contraseña (0 para cancelar): ")
+                if contraseña == '0':
+                    print("\nCancelando operación.")
+                    continue
                 while len(contraseña) < 4:
-                    print("La contraseña debe contener al menos 4 caracteres.")
+                    print("\nLa contraseña debe contener al menos 4 caracteres.")
                     contraseña = input("Contraseña: ")
-                confirmpass = input("Vuelva a ingresar la contraseña: ")
+                confirmpass = input("Vuelva a ingresar la contraseña (0 para cancelar): ")
+                if confirmpass == '0':
+                    print("\nCancelando operación.")
+                    continue
                 while contraseña != confirmpass:
                     print("Las contraseñas no coinciden")
                     contraseña = input("Contraseña: ")
@@ -44,7 +53,7 @@ def inicio_sesion():
                     confirmpass = input("Vuelva a ingresar la contraseña: ")
                 rol = 0
                 while rol < 1 or rol > 3:
-                    roles = [(1, 'Administrador'), (2, 'Instructor'), (3, 'Alumno')]
+                    roles = [[1, 'Administrador'], [2, 'Instructor'], [3, 'Alumno']]
                     print("\n")
                     print(tabulate(roles, headers=["Opción", "Descripción"], tablefmt="fancy_grid"))
                     rol = int(input("Tú que eres: "))
@@ -56,7 +65,7 @@ def inicio_sesion():
                         print("\nTe has registrado con exito.\n")
                         print("\nInicie sesión por favor.")
                     else:
-                        print("No has sido registrado coreectamente, vuelve a intentarlo.")
+                        print("\nNo has sido registrado coreectamente, vuelve a intentarlo.")
                         baja_login(correo)
                 elif rol == 2:
                     print("\nTe enviaremos un mail para corroborar que efectivamente eres un instructor.\n"
@@ -67,14 +76,14 @@ def inicio_sesion():
                         print("\nTe has registrado con exito.\n")
                         print("\nInicie sesión por favor.")
                     else:
-                        print("No has sido registrado correctamente, vuelve a intentarlo.")
+                        print("\nNo has sido registrado correctamente, vuelve a intentarlo.")
                         baja_login(correo)
                 elif rol == 3:
                     alta_usuario(correo, contraseña, 3)
                     if select_alumno(correo) is not None:
-                        print("Inicie sesión por favor.")
+                        print("\nInicie sesión por favor.")
                     else:
-                        print("No has sido registrado coreectamente, vuelve a intentarlo.")
+                        print("\nNo has sido registrado coreectamente, vuelve a intentarlo.")
                         baja_login(correo)
         elif opcion == '3':
             print("\nchau.")
