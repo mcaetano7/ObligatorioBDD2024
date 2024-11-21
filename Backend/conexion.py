@@ -8,21 +8,21 @@ def conectarse(usuario):
                 user=usuario,
                 password='adminpass',
                 host='127.0.0.1',
-                database='obligatorio2024'
+                database='obligatoriobdd2024'
             )
         elif usuario == 'instructor':
             cnx = pymysql.connect(
                 user=usuario,
                 password='instructorpass',
                 host='127.0.0.1',
-                database='obligatorio2024'
+                database='obligatoriobdd2024'
             )
         elif usuario == 'alumno':
             cnx = pymysql.connect(
                 user=usuario,
                 password='alumnopass',
                 host='127.0.0.1',
-                database='obligatorio2024'
+                database='obligatoriobdd2024'
             )
         cursor = cnx.cursor()
         return cnx, cursor
