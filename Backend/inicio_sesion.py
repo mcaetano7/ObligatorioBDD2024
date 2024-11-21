@@ -90,5 +90,3 @@ def inicio_sesion():
             return None
         else:
             print("\nOpción inválida. Por favor, elige de nuevo.")
-
-

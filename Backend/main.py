@@ -15,4 +15,3 @@ while True:
             menu_instructor(correo)
         elif obtener_rol(correo) == 'alumno':
             menu_alumno(correo)
-

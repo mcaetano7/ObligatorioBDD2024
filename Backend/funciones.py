@@ -22,7 +22,8 @@ def obtener_fecha_nacimiento():
             print("Formato inválido. Por favor, ingrese la fecha en el formato DD/MM/AAAA.")
 
 def mostrar_reportes():
-    pass
+    print("REPORTES")
+
 
 def validar_hora(hora_str):
     try:

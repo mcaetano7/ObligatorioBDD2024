@@ -60,11 +60,8 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON alumnos TO 'alumno'@'%';
 GRANT SELECT ON alumnos TO 'instructor'@'%';
 
 # permisos clase
-CREATE VIEW vista_clase_admin AS SELECT ci_instructor, id_actividad, id_turno FROM clase;
+1
 
-GRANT UPDATE ON vista_clase_admin TO 'administrador'@'%';
-
-GRANT INSERT, SELECT, DELETE ON clase TO 'administrador'@'%';
 
 GRANT SELECT ON clase TO 'alumno'@'%';
 

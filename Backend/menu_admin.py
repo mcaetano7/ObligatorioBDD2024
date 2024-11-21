@@ -1,9 +1,9 @@
 import time
 from tabulate import tabulate
-
-from Backend.funciones import mostrar_reportes
+from funciones import mostrar_reportes
 from turno import agregar_turno, eliminar_turno, modificar_turno
 from actividades import modificar_actividades
+from clase import modificar_clase
 
 
 def menu_admin():
@@ -57,10 +57,3 @@ def menu_admin_turnos():
             break
         else:
             print("\nOpción no válida")
-
-
-
-
-
-
-

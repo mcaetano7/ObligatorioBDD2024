@@ -87,5 +87,3 @@ def usuario_existente(correo) -> bool:
     if result is not None:
         return True
     return False
-
-
