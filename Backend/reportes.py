@@ -1,9 +1,10 @@
 from tabulate import tabulate
 from conexion import conectarse
+from funciones import obtener_rol
 import time
 
-def mostrar_reportes():
-    cnx, cursor = conectarse('administrador')
+def mostrar_reportes(correo):
+    cnx, cursor = conectarse(obtener_rol(correo))
     query1 = """
         SELECT a.id AS id_actividad,
 a.descripcion AS actividad,
@@ -49,12 +50,13 @@ LIMIT 5;
     cursor.execute(query3)
     turnos = cursor.fetchall()
 
-    time.sleep(0.8)
-    print("\nActividades con más ingresos:")
-    if not ingresos:
-        print("\nNo ha habido ingresos")
-    else:
-        print(tabulate(ingresos, headers=["ID actividad", "Descripción", "Ingresos totales"], tablefmt="fancy_grid"))
+    if obtener_rol(correo) == 'administrador':
+        time.sleep(0.8)
+        print("\nActividades con más ingresos:")
+        if not ingresos:
+            print("\nNo ha habido ingresos")
+        else:
+            print(tabulate(ingresos, headers=["ID actividad", "Descripción", "Ingresos totales"], tablefmt="fancy_grid"))
 
     time.sleep(0.8)
     print("\nActividades con mas alumnos:")
@@ -66,12 +68,12 @@ LIMIT 5;
     time.sleep(0.8)
     print("\nTurnos con mas clases dictadas:")
     if not turnos:
-        print("No se ha dictado ninguna clase")
+        print("\nNo se ha dictado ninguna clase")
     else:
         print(tabulate(turnos, headers=["ID Turno", "Hora de inicio",
                                     "Hora de finalizacion", "Total de clases"], tablefmt="fancy_grid"))
 
-    input("Presione cualquier tecla para volver: ")
+    input("\nPresione cualquier tecla para volver: ")
 
     cursor.close()
     cnx.close()

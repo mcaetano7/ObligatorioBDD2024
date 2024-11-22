@@ -6,7 +6,7 @@ from actividades import modificar_actividades
 from clase import modificar_clase
 
 
-def menu_admin():
+def menu_admin(correo):
     while True:
         time.sleep(0.8)
         menu_opciones = [
@@ -26,7 +26,7 @@ def menu_admin():
         elif opcion == "3":
             modificar_clase()
         elif opcion == "4":
-            mostrar_reportes()
+            mostrar_reportes(correo)
         elif opcion == "5":
             print("\nCerrando sesión")
             break

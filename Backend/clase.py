@@ -185,7 +185,7 @@ def modificar_clase():
                         try:
                             id_instructor = int(input("Ingrese el ID del instructor que desea seleccionar (0 para volver): "))
                             if id_instructor == 0:
-                                print("Cancelando operacioón")
+                                print("\nCancelando operacioón")
                                 return
                             if 1 <= id_instructor <= len(instructores):
                                 ci_instructor =  instructores[id_instructor - 1][0]

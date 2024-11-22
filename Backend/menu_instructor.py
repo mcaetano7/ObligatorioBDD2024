@@ -27,7 +27,7 @@ def menu_instructor(correo):
         elif opcion == "3":
             mostrar_clases_instructor(correo)
         elif opcion == "4":
-            mostrar_reportes()
+            mostrar_reportes(correo)
         elif opcion == "5":
             if input("\nPresione 1 para confirmar, otra tecla para volver: ") == '1':
                 baja_instructor(correo)

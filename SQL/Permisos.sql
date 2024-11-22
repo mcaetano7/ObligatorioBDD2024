@@ -60,8 +60,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON alumnos TO 'alumno'@'%';
 GRANT SELECT ON alumnos TO 'instructor'@'%';
 
 # permisos clase
-1
-
+GRANT ALL PRIVILEGES ON clase TO 'administrador'@'%';
 
 GRANT SELECT ON clase TO 'alumno'@'%';
 

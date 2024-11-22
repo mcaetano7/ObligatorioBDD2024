@@ -10,7 +10,7 @@ while True:
         break
     else:
         if obtener_rol(correo) == 'administrador':
-            menu_admin()
+            menu_admin(correo)
         elif obtener_rol(correo) == 'instructor':
             menu_instructor(correo)
         elif obtener_rol(correo) == 'alumno':
