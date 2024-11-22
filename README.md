@@ -1,5 +1,4 @@
 # ObligatorioBDD2024
 
-
-hola
+# Instructivo para correr 
 
