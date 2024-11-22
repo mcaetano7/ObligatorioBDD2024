@@ -99,7 +99,7 @@ def mostrar_clases_instructor(correo):
             resultados.append(fila)
         print("\n                            TUS CLASES")
         print(tabulate(resultados, headers=["ID Clase", "Descripción", "Hora inicio", "Hora fin", "Dictada"], tablefmt="fancy_grid"))
-        opcion = input("Presione 1 si desea dajar de dar una clase, 2 para marcar una clase como dictada, otra tecla para volver: ")
+        opcion = input("Presione 1 si desea dejar de dar una clase, 2 para marcar una clase como dictada, otra tecla para volver: ")
         if opcion == '1':
             id_clase = input("\nID de la clase que desea dejar: ")
             cursor.execute("SELECT id FROM clase WHERE id = %s AND ci_instructor = %s", (id_clase, ci_instructor))

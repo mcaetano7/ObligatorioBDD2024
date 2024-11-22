@@ -65,7 +65,7 @@ def inicio_sesion():
                         print("\nTe has registrado con exito.\n")
                         print("\nInicie sesión por favor.")
                     else:
-                        print("\nNo has sido registrado coreectamente, vuelve a intentarlo.")
+                        print("\nNo has sido registrado correctamente, vuelve a intentarlo.")
                         baja_login(correo)
                 elif rol == 2:
                     print("\nTe enviaremos un mail para corroborar que efectivamente eres un instructor.\n"
@@ -83,7 +83,7 @@ def inicio_sesion():
                     if select_alumno(correo) is not None:
                         print("\nInicie sesión por favor.")
                     else:
-                        print("\nNo has sido registrado coreectamente, vuelve a intentarlo.")
+                        print("\nNo has sido registrado correctamente, vuelve a intentarlo.")
                         baja_login(correo)
         elif opcion == '3':
             print("\nchau.")
