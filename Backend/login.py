@@ -1,3 +1,4 @@
+from Backend.funciones import obtener_rol
 from funciones import obtener_fecha_nacimiento
 from conexion import conectarse
 from hash import *
@@ -8,6 +9,8 @@ def insert_login(correo, contraseña, id_rol):
     hashed_password = hash_password(contraseña)
     cursor.execute("INSERT INTO login (correo, contraseña, id_rol) VALUES (%s, %s, %s)",
                     (correo, hashed_password, id_rol))
+    if id_rol == 1:
+        cnx.commit()
     cnx.close()
     cursor.close()
 
