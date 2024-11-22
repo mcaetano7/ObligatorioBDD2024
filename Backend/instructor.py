@@ -35,7 +35,7 @@ def baja_instructor(correo):
              "WHERE ci = %s "
              , (ci_instructor,))
     cnx.commit()
-    print(f"\nAlumno {nombre} eliminado con éxito.")
+    print(f"\nInstructor {nombre} eliminado con éxito.")
     cnx.close()
     cursor.close()
 

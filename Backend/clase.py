@@ -203,17 +203,39 @@ def modificar_clase():
                     id_turno = input("ID del nuevo turno (0 para cancelar): ")
                     turnos_ids = [str(turno[0]) for turno in turnos]
                     if id_turno == '0':
-                        print("Cancelando operacioón")
+                        print("\nCancelando operación")
                         return
                     if id_turno not in turnos_ids:
                         print("\nID inválido. Por favor, ingrese un ID de la tabla.\n")
                         continue
                     else:
+                        cursor.execute("SELECT hora_inicio, hora_fin FROM turnos WHERE id = %s", (id_turno,))
+                        cursor.execute("SELECT hora_inicio, hora_fin FROM turnos WHERE id = %s", id_turno)
+                        turno_seleccionado = cursor.fetchone()
+                        hora_inicio_seleccionada = turno_seleccionado[0]
+                        hora_fin_seleccionada = turno_seleccionado[1]
+                        cursor.execute(
+                            "SELECT t.hora_inicio, t.hora_fin "
+                            "FROM clase c "
+                            "JOIN turnos t ON t.id = c.id_turno "
+                            "WHERE c.ci_instructor = %s AND c.dictada = 0"
+                            , (ci_instructor,)
+                        )
+                        clases_actuales = cursor.fetchall()
+                        conflicto_horario = False
+                        for (hora_inicio, hora_fin) in clases_actuales:
+                            if not (hora_fin_seleccionada <= hora_inicio or hora_inicio_seleccionada >= hora_fin):
+                                conflicto_horario = True
+                                break
+                        if conflicto_horario:
+                            print("\nNo puedes inscribirte en esta clase debido a una superposición horaria.\n")
+                            continue
+                        update_clase(id_clase, ci_instructor, id_turno)
+                        print(f"\nClase {id_clase} modificada con éxito.")
                         break
-                update_clase(id_clase, ci_instructor, id_turno)
-                print(f"\nClase {id_clase} modificada correctamente")
-                cnx.close()
-                cursor.close()
+
+
+
 
 def update_clase(id_clase, ci_instructor, id_turno):
     cnx, cursor = conectarse('administrador')

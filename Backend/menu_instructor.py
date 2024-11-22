@@ -1,5 +1,6 @@
 import time
 from tabulate import tabulate
+from reportes import mostrar_reportes
 from clase import alta_clase, mostrar_clases_instructor
 from login import baja_login
 from instructor import baja_instructor, info_instructor
@@ -26,7 +27,7 @@ def menu_instructor(correo):
         elif opcion == "3":
             mostrar_clases_instructor(correo)
         elif opcion == "4":
-            pass
+            mostrar_reportes()
         elif opcion == "5":
             if input("\nPresione 1 para confirmar, otra tecla para volver: ") == '1':
                 baja_instructor(correo)

@@ -1,6 +1,6 @@
 import time
 from tabulate import tabulate
-from funciones import mostrar_reportes
+from reportes import mostrar_reportes
 from turno import agregar_turno, eliminar_turno, modificar_turno
 from actividades import modificar_actividades
 from clase import modificar_clase
