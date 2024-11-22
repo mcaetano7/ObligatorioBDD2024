@@ -3,9 +3,7 @@ from alumno_clase import alta_alumno_clase, mostrar_alumno_clases
 from alumnos import baja_alumno, info_alumno
 from login import baja_login
 from tabulate import tabulate
-from funciones import mostrar_reportes
 from reportes import mostrar_reportes
-
 
 def menu_alumno(correo):
     while True:
@@ -39,3 +37,7 @@ def menu_alumno(correo):
             break
         else:
             print("\nOpción inválida.")
+
+
+
+

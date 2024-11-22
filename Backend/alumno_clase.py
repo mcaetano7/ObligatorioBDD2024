@@ -20,14 +20,14 @@ def alta_alumno_clase(correo):
             "JOIN turnos t ON t.id = c.id_turno "
             "WHERE c.dictada = 0 "
             )
-        results = cursor.fetchall()
-        if not results:
+        clases = cursor.fetchall()
+        if not clases:
             print("\nNo hay clases disponibles\n")
             return
         else:
             headers = ["ID Clase", "Instructor", "Actividad", "Hora Inicio", "Hora Fin", "Costo"]
             print("\nEstas son las clases disponibles:")
-            print(tabulate(results, headers=headers, tablefmt="fancy_grid"))
+            print(tabulate(clases, headers=headers, tablefmt="fancy_grid"))
             id_clase = input("\nNúmero de clase a la que te deseas inscribir (o presione 0 para volver): ")
             if not validacion_id(correo, id_clase) and id_clase != '0':
                 print("\nClase inexistente. ")
