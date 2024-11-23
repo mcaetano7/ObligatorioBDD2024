@@ -6,7 +6,7 @@
 
 • Clonar el repositorio.  
 
-• Instalar las librerías del archivo requirments.txt con el comando: **pip install -r requirements.txt**  
+• Instalar las librerías del archivo requirements.txt con el comando: **pip install -r requirements.txt**  
 
 • Ejecutar en DataGrip el archivo **Creación-Tablas.sql** para crear la base de datos y las tablas.  
 
