@@ -2,7 +2,7 @@
 
 # Instructivo para correr la aplicación de forma local
 
--Tener instalado python, MySQL, PyCharm y DataGrip.
+-Tener instalado python, MySQL, PyCharm y DataGrip.\n
 -Clonar el repositorio.
 -Instalar las librerías del archivo requirments.txt con el comando: **pip install -r requirements.txt**
 -Ejecutar en DataGrip el archivo **Creación-Tablas.sql** para crear la base de datos y las tablas.
