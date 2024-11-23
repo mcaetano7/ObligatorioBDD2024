@@ -51,10 +51,6 @@ GRANT SELECT ON turnos TO 'instructor'@'%';
 # permisos alumnos
 GRANT ALL PRIVILEGES ON alumnos TO 'administrador'@'%';
 
-CREATE VIEW vista_update_alumnos AS SELECT nombre, apellido, fecha_nacimiento, telefono FROM alumnos
-
-GRANT UPDATE ON vista_update_alumnos TO 'alumno'@'%';
-
 GRANT SELECT, INSERT, UPDATE, DELETE ON alumnos TO 'alumno'@'%';
 
 GRANT SELECT ON alumnos TO 'instructor'@'%';

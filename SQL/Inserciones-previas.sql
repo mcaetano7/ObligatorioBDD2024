@@ -27,7 +27,3 @@ INSERT INTO rol(descripcion) VALUES
 ('administrador'),
 ('instructor'),
 ('alumno');
-
-INSERT INTO login(correo, contraseña, id_rol) VALUES
-('juanperezcerro@gmail.com', '1234', 1);
-

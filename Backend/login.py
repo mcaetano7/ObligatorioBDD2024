@@ -36,7 +36,7 @@ def alta_usuario(correo, contraseña,id_rol):
             cnx.commit()
             print(f"\nAlumno {nombre} {apellido} registrado con éxito.")
         except:
-            print("\nYa existe un alumno con esa cédula.")
+            print("\nCédula inválida")
             cnx.rollback()
             return
         finally:
@@ -52,7 +52,7 @@ def alta_usuario(correo, contraseña,id_rol):
             cnx.commit()
             print(f"\nInstructor {nombre} {apellido} registrado con éxito.")
         except:
-            print("\nYa existe un instructor con esa cédula.")
+            print("\nCédula inválida")
             cnx.rollback()
             return
         finally:

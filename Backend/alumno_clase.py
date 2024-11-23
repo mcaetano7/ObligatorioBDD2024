@@ -1,7 +1,6 @@
 import time
-
-from Backend.alumnos import select_alumno
-from Backend.clase import obtener_clases
+from alumnos import select_alumno
+from clase import obtener_clases
 from conexion import conectarse
 from tabulate import tabulate
 

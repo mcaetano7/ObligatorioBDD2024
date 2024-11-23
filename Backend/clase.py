@@ -1,7 +1,7 @@
 import time
 from datetime import datetime, timedelta
 from tabulate import tabulate
-from Backend.instructor import obtener_instructor, baja_instructor
+from instructor import obtener_instructor
 from actividades import obtener_actividades
 from turno import obtener_turnos
 from funciones import obtener_rol

@@ -23,7 +23,7 @@ def inicio_sesion():
                 print("\nSesión iniciada con éxito")
                 return correo
             else:
-                print("El correo electrónico o la contraseña son incorrectos.")
+                print("\nEl correo electrónico o la contraseña son incorrectos.")
         elif opcion == '2':
             correo = input("\nCorreo (0 para cancelar): ")
             if correo == '0':
