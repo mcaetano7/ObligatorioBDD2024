@@ -3,6 +3,7 @@ from login import *
 import time
 from instructor import obtener_instructor
 from alumnos import select_alumno
+import os
 
 
 def inicio_sesion():
@@ -21,6 +22,7 @@ def inicio_sesion():
             contraseña = input("Contraseña: ")
             if validar_credenciales(correo, contraseña):
                 print("\nSesión iniciada con éxito")
+                os.system('clear')
                 return correo
             else:
                 print("\nEl correo electrónico o la contraseña son incorrectos.")

@@ -22,7 +22,7 @@ def alta_usuario(correo, contraseña,id_rol):
                    (correo, hashed_password, id_rol))
     if id_rol == 3:
         cedula = input("\nIngrese su cédula: ")
-        while len(cedula) != 8:
+        while len(str(cedula)) != 8:
             print("La cédula debe tener 8 números.")
             cedula = int(input("Ingrese su cédula: "))
         nombre = input("Ingrese su nombre: ")
@@ -43,12 +43,15 @@ def alta_usuario(correo, contraseña,id_rol):
             cursor.close()
             cnx.close()
     else:
-        ci = input("\nIngrese su cédula: ")
+        cedula = input("\nIngrese su cédula: ")
+        while len(str(cedula)) != 8:
+            print("La cédula debe tener 8 números.")
+            cedula = int(input("Ingrese su cédula: "))
         nombre = input("Ingrese su nombre: ")
         apellido = input("Ingrese su apellido: ")
         try:
             cursor.execute("INSERT INTO instructores (ci, nombre, apellido, correo) VALUES (%s, %s, %s, %s)",
-                           (ci, nombre, apellido, correo))
+                           (cedula, nombre, apellido, correo))
             cnx.commit()
             print(f"\nInstructor {nombre} {apellido} registrado con éxito.")
         except:
