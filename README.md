@@ -12,7 +12,8 @@
 
 • Ejecutar en DataGrip el archivo **Permisos.sql** para crear los usuarios y darles los permisos necesarios. 
 
-• Ejecutar en DataGrip el archivo **Inserciones-Previas.sql** con los inserts necesarios para utilizar el programa.  
+• Ejecutar en DataGrip el archivo **Inserciones-Previas.sql** con los inserts necesarios para utilizar el programa.
+
 • Ejecutar en DataGrip el archivo **Reportes.sql** con las consultas necesarias para utilizar el programa. 
 
 • Ejecutar el archivo **main.py** para comenzar a usar la aplicación.   
