@@ -16,4 +16,10 @@
 
 • Ejecutar en DataGrip el archivo **Reportes.sql** con las consultas necesarias para utilizar el programa. 
 
-• Ejecutar el archivo **main.py** para comenzar a usar la aplicación.   
+• Ejecutar el archivo **main.py** para comenzar a usar la aplicación.
+
+• Crear una cuenta de **instructor** y elegir clases para dictar.
+
+• Crear una cuenta de **alumno** y elegir clases para tomar.
+
+• Crear una cuenta de **administrador** para administrar el sistema. 
